@@ -64,6 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(pipe2)
         
+        // Gap between the pipe and bird
         let gap = SKNode()
         
         gap.position = CGPoint(x: self.frame.midX + self.frame.width, y: self.frame.midY + pipeOffSet)
@@ -77,7 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(gap)
         
     }
-    
+    // Ends game if bird hits anything
     func didBegin(_ contact: SKPhysicsContact) {
         
         if gameOver == false {
@@ -110,8 +111,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         
         // Make sure to add background first. Give the main background priority so that you can see your image created after the background.
-        // Below: Background
-        
         self.physicsWorld.contactDelegate = self
         
         setUpGame()
@@ -119,7 +118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    
+    // Sets up background
     func setUpGame() {
         
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.makePipes), userInfo: nil, repeats: true)
